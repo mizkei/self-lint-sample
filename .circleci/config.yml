@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: golang:latest
+      - image: circleci/golang:1.11.1
         environment:
           REVIEWDOG_VERSION: "0.9.11"
     steps:
