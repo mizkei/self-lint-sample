@@ -1,0 +1,13 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: golang:latest
+        environment:
+          REVIEWDOG_VERSION: "0.9.11"
+    steps:
+      - checkout
+      - run: go get -u github.com/mizkei/self-lint
+      - run: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
+      - run: self-lint -config=selflint_config.yml ./... | ./reviewdog -f=golint -name=self-lint -reporter=github-pr-review
