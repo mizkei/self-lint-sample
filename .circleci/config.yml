@@ -6,6 +6,7 @@ jobs:
       - image: circleci/golang:1.11.1
         environment:
           REVIEWDOG_VERSION: "0.9.11"
+    working_directory: /go/src/github.com/mizkei/self-lint-sample
     steps:
       - checkout
       - run: go get -u github.com/mizkei/self-lint
